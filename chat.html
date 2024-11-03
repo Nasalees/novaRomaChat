@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="msgInput" />
+    <button onclick="enviar()">Enviar</button>
+    <ul></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
+
+    <script>
+      const socket = io(
+        "https://d86b9647-ab90-434e-8180-2a41a5569b79-00-10g5k0wip8jr6.picard.replit.dev/",
+      );
+
+      socket.on("connect", () => {
+        console.log("Usuário Conectado ao servidor");
+      });
+
+      socket.on("message", (msg) => {
+        console.log(msg);
+        const ul = document.querySelector("ul");
+        ul.innerHTML += `<li>${msg}</li>`;
+      });
+
+      function enviar() {
+        let msgInput = document.getElementById("msgInput");
+        socket.emit("message", msgInput.value);
+        msgInput.value = "";
+      }
+    </script>
+  </body>
+</html>
