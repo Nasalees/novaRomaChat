@@ -38,6 +38,25 @@
         margin: 0 0 10px;
       }
 
+      /* Estilo para a barra de rolagem */
+      #messages::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      #messages::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      #messages::-webkit-scrollbar-thumb {
+        background-color: #a8b0ff;
+        border-radius: 10px;
+      }
+
+      #messages::-webkit-scrollbar-thumb:hover {
+        background-color: #8692de;
+      }
+
       /* Estilo para mensagens enviadas (do próprio usuário) */
       .sent {
         align-self: flex-end;
@@ -144,7 +163,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
 
     <script>
-        const socket = io("https://fantastic-zebra-4ppj6g7xvrxfqr9p-3000.app.github.dev/");
+        const socket = io("https://scaling-tribble-jppj945x74725w7r-3000.app.github.dev/");
 
         // Recupera o nome de usuário do localStorage
         const username = localStorage.getItem("username");
@@ -171,10 +190,14 @@
 
         function enviar() {
             let msgInput = document.getElementById("msgInput");
+            let message = msgInput.value.trim(); // Remove espaços em branco no início e fim
 
-            // Envia um objeto contendo o nome do usuário e a mensagem
-            socket.emit("message", { username: username, message: msgInput.value });
-            msgInput.value = "";
+            // Verifica se o campo de mensagem está vazio antes de enviar
+            if (message) {
+                // Envia um objeto contendo o nome do usuário e a mensagem
+                socket.emit("message", { username: username, message: message });
+                msgInput.value = ""; // Limpa o campo após o envio
+            }
         }
 
         document.getElementById("msgInput").addEventListener("keypress", function(event) {
