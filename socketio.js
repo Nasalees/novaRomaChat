@@ -11,14 +11,21 @@ const io = socketio(server);
 io.on("connection", (socket) => {
   console.log("Usuário conectado: " + socket.id);
 
-  socket.on("message", (msg) => {
-    console.log(msg);
-    io.emit("message", msg);
+  socket.on("message", (msgData) => {
+    // Recebe um objeto { username: 'nome', message: 'mensagem' }
+    console.log(`${msgData.username}: ${msgData.message}`);
+    
+    // Emite a mensagem para todos os clientes, incluindo o nome do usuário
+    io.emit("message", msgData);
   });
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/chat.html");
+  res.sendFile(__dirname + "/login.html"); // Página inicial é o login
+});
+
+app.get("/chat.html", (req, res) => {
+  res.sendFile(__dirname + "/chat.html"); // Verifique o caminho completo aqui
 });
 
 server.listen(3000);

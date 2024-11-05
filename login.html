@@ -93,7 +93,7 @@
 <body>
     <div class="login-container">
         <h1>Login</h1>
-        <form>
+        <form id="loginForm">
             <div class="input-group">
                 <label for="username">Login</label>
                 <input type="text" id="username" name="username" placeholder="Digite seu login" required>
@@ -108,5 +108,20 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+
+            // Obtém o nome de usuário
+            const username = document.getElementById("username").value;
+
+            // Armazena o nome de usuário no localStorage
+            localStorage.setItem("username", username);
+
+            // Redireciona para o chat
+            window.location.href = "chat.html";
+        });
+    </script>
 </body>
 </html>

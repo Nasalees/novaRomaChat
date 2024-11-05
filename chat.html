@@ -86,44 +86,47 @@
   </head>
   <body>
     <div class="container">
-      <!-- Lista de mensagens -->
-      <ul id="messages"></ul>
-      
-      <!-- Input e botão de enviar -->
-      <div class="input-container">
-        <input type="text" id="msgInput" placeholder="Digite sua mensagem" />
-        <button onclick="enviar()">Enviar</button>
-      </div>
+        <!-- Lista de mensagens -->
+        <ul id="messages"></ul>
+        
+        <!-- Input e botão de enviar -->
+        <div class="input-container">
+            <input type="text" id="msgInput" placeholder="Digite sua mensagem" />
+            <button onclick="enviar()">Enviar</button>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
 
     <script>
-      const socket = io("https://expert-acorn-7jjvwr9g5wjhxgpj-3000.app.github.dev/");
+        const socket = io("https://refactored-invention-7jjvwr9gwqvfpvr5-3000.app.github.dev/");
 
-      socket.on("connect", () => {
-        console.log("Usuário Conectado ao servidor");
-      });
+        // Recupera o nome de usuário do localStorage
+        const username = localStorage.getItem("username");
 
-      socket.on("message", (msg) => {
-        console.log(msg);
-        const ul = document.getElementById("messages");
-        ul.innerHTML += `<li>${msg}</li>`;
-      });
+        socket.on("connect", () => {
+            console.log("Usuário Conectado ao servidor");
+        });
 
-      function enviar() {
-        let msgInput = document.getElementById("msgInput");
-        socket.emit("message", msgInput.value);
-        msgInput.value = "";
-      }
+        socket.on("message", (msgData) => {
+            // Exibe a mensagem com o nome do usuário
+            const ul = document.getElementById("messages");
+            ul.innerHTML += `<li><strong>${msgData.username}</strong>: ${msgData.message}</li>`;
+        });
 
-      document.getElementById("msgInput").addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          enviar();
+        function enviar() {
+            let msgInput = document.getElementById("msgInput");
+
+            // Envia um objeto contendo o nome do usuário e a mensagem
+            socket.emit("message", { username: username, message: msgInput.value });
+            msgInput.value = "";
         }
-      });
-    </script>
 
-   
-  </body>
+        document.getElementById("msgInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                enviar();
+            }
+        });
+    </script>
+</body>
 </html>
