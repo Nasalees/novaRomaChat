@@ -46,7 +46,7 @@
         padding: 8px;
         border-radius: 10px 10px 0 10px;
         margin-bottom: 10px;
-        max-width: 70%;
+        max-width: 100%;
         font-size: 14px;
         text-align: right;
       }
@@ -59,7 +59,7 @@
         padding: 8px;
         border-radius: 10px 10px 10px 0;
         margin-bottom: 10px;
-        max-width: 70%;
+        max-width: 100%;
         font-size: 14px;
         text-align: left;
       }
@@ -93,6 +93,40 @@
         background-color: #8692de;
         color: black;
       }
+
+      /* Ajustes para dispositivos móveis */
+      @media (max-width: 600px) {
+        .container {
+          width: 90%;
+          height: 80%;
+          padding: 15px;
+        }
+
+        #messages {
+          max-height: 60%;
+          font-size: 13px;
+        }
+
+        .sent, .received {
+          padding: 6px;
+          font-size: 13px;
+        }
+
+        .input-container {
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        #msgInput {
+          padding: 8px;
+          font-size: 14px;
+        }
+
+        button {
+          padding: 8px;
+          font-size: 14px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -110,7 +144,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
 
     <script>
-        const socket = io("https://refactored-invention-7jjvwr9gwqvfpvr5-3000.app.github.dev/");
+        const socket = io("https://fantastic-zebra-4ppj6g7xvrxfqr9p-3000.app.github.dev/");
 
         // Recupera o nome de usuário do localStorage
         const username = localStorage.getItem("username");
