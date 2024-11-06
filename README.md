@@ -11,10 +11,13 @@
 - Rodrigo Nascimento
   
 ## Instruções para Configuração do Código
-Para que a comunicação funcione corretamente, é necessário atualizar o link da constante socket no arquivo chat.html com o endereço gerado pela sua máquina local ou servidor onde o aplicativo está em execução.
-
+- No terminal, execute o comando "npm install" para instalar todas as dependências do projeto listadas no arquivo package.json.
+- Em seguida, execute o comando "npm run start-sktio" no terminal para iniciar o servidor. Esse comando gerará um link (URL) onde o servidor Socket.IO estará rodando.
+- Abra o arquivo "chat.html" e localize a constante chamada "socket".
+- Substitua o link na constante socket pelo endereço gerado no terminal. Esse link é o endereço do servidor onde a comunicação do chat será feita.
+  
 ## Ambiente de desenvolvimento e Versionamento 
-- Replit - IDE on-line.<br>
+- Replit e Codespace - IDE on-line.<br>
 - GitHub - Plataforma de controle de versão, hospedagem, colaboração e gerenciamento
 
 
