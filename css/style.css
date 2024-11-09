@@ -28,19 +28,49 @@ body {
   margin: 0 0 10px;
 }
 
-#messages li {
-  padding: 8px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #555;
-  word-wrap: break-word;
-  transition: background-color 0.2s;
+/* Estilo para a barra de rolagem */
+#messages::-webkit-scrollbar {
+  width: 8px;
 }
 
-#messages li:hover {
-  background-color: #e2e2e2;
+#messages::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+  background-color: #a8b0ff;
+  border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb:hover {
+  background-color: #8692de;
+}
+
+/* Estilo para mensagens enviadas (do próprio usuário) */
+.sent {
+  align-self: flex-end;
+  background-color: #a8b0ff;
+  color: #fff;
+  padding: 8px;
+  border-radius: 10px 10px 0 10px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  font-size: 14px;
+  text-align: right;
+}
+
+/* Estilo para mensagens recebidas */
+.received {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #555;
+  padding: 8px;
+  border-radius: 10px 10px 10px 0;
+  margin-bottom: 10px;
+  max-width: 100%;
+  font-size: 14px;
+  text-align: left;
 }
 
 .input-container {
@@ -71,4 +101,38 @@ button {
 button:hover {
   background-color: #8692de;
   color: black;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    height: 80%;
+    padding: 15px;
+  }
+
+  #messages {
+    max-height: 60%;
+    font-size: 13px;
+  }
+
+  .sent, .received {
+    padding: 6px;
+    font-size: 13px;
+  }
+
+  .input-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  #msgInput {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 8px;
+    font-size: 14px;
+  }
 }

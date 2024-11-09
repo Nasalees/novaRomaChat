@@ -28,4 +28,11 @@ app.get("/chat.html", (req, res) => {
   res.sendFile(__dirname + "/chat.html"); // Verifique o caminho completo aqui
 });
 
+app.get("/css/style.css", (req, res) => {
+  res.sendFile(__dirname + "/css/style.css"); // Verifique o caminho completo aqui
+});
+app.get("/css/login_style.css", (req, res) => {
+  res.sendFile(__dirname + "/css/login_style.css"); // Verifique o caminho completo aqui
+});
+
 server.listen(3000);
