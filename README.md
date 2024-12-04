@@ -4,7 +4,6 @@
 #### Repositório do projeto de Sistemas Distribuídos - Faculdade Nova Roma: Desenvolvimento de um chatbot utilizando WebSocket e Socket.IO, com integração a APIs como o GPT-4. O objetivo é construir um sistema de comunicação em tempo real, capaz de processar linguagem natural e gerar respostas inteligentes.
 
 ## Integrantes
-- Daniel Holanda
 - Deyvid Santos
 - Luiz Ferraz
 - Nathalia Sales
