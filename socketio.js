@@ -28,11 +28,30 @@ app.get("/chat.html", (req, res) => {
   res.sendFile(__dirname + "/chat.html"); // Verifique o caminho completo aqui
 });
 
+app.get("/sons/gato.mp3", (req, res) => {
+  res.sendFile(__dirname + "/sons/gato.mp3");
+});
+
+app.get("/sons/cachorro.mp3", (req, res) => {
+  res.sendFile(__dirname + "/sons/cachorro.mp3");
+});
+
+app.get("/sons/leao.mp3", (req, res) => {
+  res.sendFile(__dirname + "/sons/leao.mp3");
+});
+
+app.get("/sons/raposa.mp3", (req, res) => {
+  res.sendFile(__dirname + "/sons/raposa.mp3");
+});
+
 app.get("/css/style.css", (req, res) => {
   res.sendFile(__dirname + "/css/style.css"); // Verifique o caminho completo aqui
 });
+
 app.get("/css/login_style.css", (req, res) => {
   res.sendFile(__dirname + "/css/login_style.css"); // Verifique o caminho completo aqui
 });
 
-server.listen(3000);
+server.listen(3000, () => {
+  console.log("Servidor rodando na porta 3000");
+});

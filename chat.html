@@ -1,14 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Chat dos Canalhas</title>
     <link rel="stylesheet" href="./css/style.css">
-
   </head>
   <body>
+    <audio id="somGato" src="sons/gato.mp3"></audio>
+    <audio id="somCachorro" src="sons/cachorro.mp3"></audio>
+    <audio id="somLeao" src="sons/leao.mp3"></audio>
+    <audio id="somRaposa" src="sons/raposa.mp3"></audio>
     <div class="container">
         <!-- Lista de mensagens -->
         <ul id="messages"></ul>
@@ -21,37 +24,51 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.js"></script>
-
+    <script src="gpt.js"></script>
     <script>
-        const socket = io("https://upgraded-halibut-gvv465qg6qrf9rrg-3000.app.github.dev/");
-
+        const socket = io("https://cautious-orbit-x7465q595rg26999-3000.app.github.dev/");
+    
         // Recupera o nome de usuário do localStorage
         const username = localStorage.getItem("username");
-
+    
         socket.on("connect", () => {
             console.log("Usuário Conectado ao servidor");
         });
-
+    
         socket.on("message", (msgData) => {
             const ul = document.getElementById("messages");
             const li = document.createElement("li");
-
+    
             // Define o estilo da mensagem dependendo do remetente
             if (msgData.username === username) {
                 li.className = "sent";
             } else {
                 li.className = "received";
             }
-
+    
             // Exibe a mensagem com o nome do usuário
             li.innerHTML = `<strong>${msgData.username}</strong>: ${msgData.message}`;
             ul.appendChild(li);
+    
+            // Reproduz o som correspondente se a mensagem for o nome do animal
+            if (msgData.message.toLowerCase() === "gato") {
+                document.getElementById("somGato").play();
+            }
+            else if (msgData.message.toLowerCase() === "cachorro") {
+                document.getElementById("somCachorro").play();
+            }
+            else if (msgData.message.toLowerCase() === "raposa") {
+                document.getElementById("somRaposa").play();
+            }
+            else if (msgData.message.toLowerCase() === "leao") {
+                document.getElementById("somLeao").play();
+            }
         });
-
+    
         function enviar() {
             let msgInput = document.getElementById("msgInput");
             let message = msgInput.value.trim(); // Remove espaços em branco no início e fim
-
+    
             // Verifica se o campo de mensagem está vazio antes de enviar
             if (message) {
                 // Envia um objeto contendo o nome do usuário e a mensagem
@@ -59,7 +76,7 @@
                 msgInput.value = ""; // Limpa o campo após o envio
             }
         }
-
+    
         document.getElementById("msgInput").addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 enviar();
